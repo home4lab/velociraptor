@@ -32,7 +32,8 @@ vim /etc/velociraptor.config.yaml
 
 
 # optional
-install systemd service for velociraptor                                                                                                                                                                                                                                                                                                                               
+install systemd service for velociraptor                                                                                                                                           
+ 
 cp velociraptor /usr/local/bin/
 
 vim /lib/systemd/system/velociraptor.service
