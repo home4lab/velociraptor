@@ -8,21 +8,32 @@ cd /etc/velociraptor
 wget https://github.com/Velocidex/velociraptor/releases/download/v0.6.1-rc1/velociraptor-v0.6.1-rc2-linux-amd64
 
 # make executable file
+mv velociraptor-v0.6.1-rc2-linux-amd64 velociraptor
 chmod +x velociraptor-v0.6.1-rc2-linux-amd64
 
 # generate config file
-./velociraptor-v0.6.1-rc2-linux-amd64 config generate > /etc/velociraptor/velociraptor.config.yaml
+./velociraptor config generate > /etc/velociraptor.config.yaml
 
 # create user admin
-./velociraptor-v0.6.1-rc2-linux-amd64 --config /etc/velociraptor/velociraptor.config.yaml user add admin --role administrator
+./velociraptor --config /etc/velociraptor.config.yaml user add admin --role administrator
 
 # start the frontend
-./velociraptor-v0.6.1-rc2-linux-amd64 --config /etc/velociraptor/velociraptor.config.yaml frontend -v
+./velociraptor --config /etc/velociraptor.config.yaml frontend -v
+
+# enable self signed ssl
+vim /etc/velociraptor.config.yaml
+
+    nonce: B6yeXfJZ2Ss=
+    use_self_signed_ssl: true
+    writeback_darwin: /etc/velociraptor.writeback.yaml
+    writeback_linux: /etc/velociraptor.writeback.yaml
+    writeback_windows: $ProgramFiles\Velociraptor\velociraptor.writeback.yaml
+    tempdir_windows: $ProgramFiles\Velociraptor\Tools
+
 
 # optional
-install systemd service for velociraptor 
-
-cp velociraptor-v0.6.1-rc2-linux-amd64 /usr/local/bin/velociraptor
+install systemd service for velociraptor                                                                                                                                                                                                                                                                                                                               
+cp velociraptor /usr/local/bin/
 
 vim /lib/systemd/system/velociraptor.service
 
@@ -35,7 +46,7 @@ vim /lib/systemd/system/velociraptor.service
     RestartSec=120
     LimitNOFILE=20000
     Environment=LANG=en_US.UTF-8
-    ExecStart=/usr/local/bin/velociraptor --config /etc/velociraptor/velociraptor.config.yaml frontend -v
+    ExecStart=/usr/local/bin/velociraptor --config /etc/velociraptor.config.yaml frontend -v
 
     [Install]
     WantedBy=multi-user.target
@@ -44,3 +55,10 @@ vim /lib/systemd/system/velociraptor.service
 
 
 systemctl daemon-reload
+
+systemctl enable --now velociraptor 
+
+systemctl status velociraptor
+
+# references
+https://kifarunix.com/install-and-setup-velociraptor-on-ubuntu/
