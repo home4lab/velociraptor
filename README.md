@@ -24,7 +24,7 @@ chmod +x velociraptor-v0.6.1-rc2-linux-amd64
 vim /etc/velociraptor.config.yaml
 
     nonce: B6yeXfJZ2Ss=
-    use_self_signed_ssl: true
+    **use_self_signed_ssl: true**
     writeback_darwin: /etc/velociraptor.writeback.yaml
     writeback_linux: /etc/velociraptor.writeback.yaml
     writeback_windows: $ProgramFiles\Velociraptor\velociraptor.writeback.yaml
