@@ -2,7 +2,9 @@
 
 # download package
 mkdir velociraptor
+
 cd velociraptor
+
 wget https://github.com/Velocidex/velociraptor/releases/download/v0.6.1-rc1/velociraptor-v0.6.1-rc2-linux-amd64
 
 # make executable file
