@@ -32,7 +32,11 @@ vim /etc/velociraptor.config.yaml
 
 
 # optional
-install systemd service for velociraptor
+# create installation debian package for client and server
+./velociraptor --config server.config.yaml debian client
+
+./velociraptor --config server.config.yaml debian server
+# install systemd service for velociraptor
 
 cp velociraptor /usr/local/bin/
 
