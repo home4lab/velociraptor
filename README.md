@@ -67,3 +67,13 @@ systemctl status velociraptor
 
 # references
 https://kifarunix.com/install-and-setup-velociraptor-on-ubuntu/
+
+# top level corrensponds to the type of information that velociraptor collect:
+
+File - Access the file system using the filesystem API
+
+NTFS - Access the file system using raw NTFS parsing ( Windows Only )
+
+Registry - Access the Windows Registry using the Registry API ( Windows Only )
+
+Artifacts - A view of all artifacts collected from the client
